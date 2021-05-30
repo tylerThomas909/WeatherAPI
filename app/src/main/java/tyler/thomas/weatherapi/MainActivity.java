@@ -38,16 +38,16 @@ ListView lv_weatherReport;
         btn_getWeatherByName = findViewById(R.id.btn_getWeatherByCityName);
         et_dataInput = findViewById(R.id.et_dataInput);
         lv_weatherReport = findViewById(R.id.lv_weatherReports);
+       final  WeatherDataService weatherDataService = new WeatherDataService(MainActivity.this);
         //Click listeners for each button.
         btn_CityID.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WeatherDataService weatherDataService = new WeatherDataService(MainActivity.this);
 
                 weatherDataService.getCityID(et_dataInput.getText().toString(), new WeatherDataService.VolleyResponseListener(){
                     @Override
                     public void onError(String message) {
-                        Toast.makeText(MainActivity.this,"Error!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
                     }
                     @Override
                     public void onResponse(String cityID) {
@@ -59,7 +59,16 @@ ListView lv_weatherReport;
         btn_getWeatherByID.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"Hello2",Toast.LENGTH_SHORT).show();
+                weatherDataService.getweatherByID(et_dataInput.getText().toString(), new WeatherDataService.VolleyResponseListener(){
+                    @Override
+                    public void onError(String message) {
+                        Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                    }
+                    @Override
+                    public void onResponse(String cityID) {
+                        Toast.makeText(MainActivity.this,"Returned an ID of "+ cityID, Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
         btn_getWeatherByName.setOnClickListener(new View.OnClickListener() {
