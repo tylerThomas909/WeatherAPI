@@ -55,7 +55,7 @@ ListView lv_weatherReport;
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        Toast.makeText(MainActivity.this,"City ID" + cityID,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this,"City ID " + cityID,Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
                     @Override
