@@ -41,11 +41,19 @@ ListView lv_weatherReport;
         //Click listeners for each button.
         btn_CityID.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {//Semantic error
+            public void onClick(View v) {
                 WeatherDataService weatherDataService = new WeatherDataService(MainActivity.this);
-                //This didn't return anything.
-                String cityID = weatherDataService.getCityID(et_dataInput.getText().toString());
-                Toast.makeText(MainActivity.this,"Returned an ID of "+ cityID, Toast.LENGTH_SHORT).show();
+
+                weatherDataService.getCityID(et_dataInput.getText().toString(), new WeatherDataService.VolleyResponseListener(){
+                    @Override
+                    public void onError(String message) {
+                        Toast.makeText(MainActivity.this,"Error!", Toast.LENGTH_SHORT).show();
+                    }
+                    @Override
+                    public void onResponse(String cityID) {
+                        Toast.makeText(MainActivity.this,"Returned an ID of "+ cityID, Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
         btn_getWeatherByID.setOnClickListener(new View.OnClickListener() {
