@@ -83,7 +83,21 @@ ListView lv_weatherReport;
         btn_getWeatherByName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this," Three",Toast.LENGTH_SHORT).show();
+                weatherDataService.getWeatherByName(et_dataInput.getText().toString(), new WeatherDataService.ForecastByName() {
+                    @Override
+                    public void onError(String message) {
+                        Toast.makeText(MainActivity.this,"wrong " , Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onResponse(List<WeatherReportModel> weatherReportModels) {
+                        //Put the entire list into listview control
+
+                        ArrayAdapter arrayAdapter = new ArrayAdapter(MainActivity.this, android.R.layout.
+                                simple_list_item_1, weatherReportModels);
+                        lv_weatherReport.setAdapter(arrayAdapter);
+                    }
+                });
             }
         });
 

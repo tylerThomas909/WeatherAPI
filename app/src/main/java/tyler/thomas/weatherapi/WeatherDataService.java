@@ -104,7 +104,36 @@ public class WeatherDataService extends MainActivity {
                 //get each item
         MySingleton.getInstance(context).addToRequestQueue(request);
     }
+    public interface ForecastByName{
+        void onError(String message);
+        void onResponse(List<WeatherReportModel> weatherReportModels);
+    }
+public void getWeatherByName(String cityID,ForecastByName forecastByName){
+        //fetch the city id given the name
+        //fetch the city forecast given the city id.
+        getCityID(cityID, new VolleyResponseListener() {
+            @Override
+            public void onError(String message) {
 
+            }
+
+            @Override
+            public void onResponse(String cityID) {
+            getWeathertByID(cityID, new ForecastByIDResponse() {
+                @Override
+                public void onError(String message) {
+
+                }
+
+                @Override
+                public void onResponse(List<WeatherReportModel> weatherReportModels) {
+                //We have the weather report.
+                    forecastByName.onResponse(weatherReportModels);
+                }
+            });
+            }
+        });
+
+    }
 }
-    //public List<WeatherReportModel> get CityForeCastByName(String cityID)
 
