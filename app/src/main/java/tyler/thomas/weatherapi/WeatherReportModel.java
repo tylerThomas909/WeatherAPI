@@ -15,7 +15,17 @@ public class WeatherReportModel {
         private float visibility;
         private int predictability;
 
-        public WeatherReportModel(int id, String weather_state_name, String weather_state_abbr, String wind_direction_compass, String created, String applicable_date, float min_temp, float max_temp, float wind_speed, float wind_direction, int air_pressure, int humidity, float visibility, int predictability) {
+        public float getThe_temp() {
+                return the_temp;
+        }
+
+        public void setThe_temp(float the_temp) {
+                this.the_temp = the_temp;
+        }
+
+        private  float the_temp;
+
+        public WeatherReportModel(int id, String weather_state_name, String weather_state_abbr, String wind_direction_compass, String created, String applicable_date, float min_temp, float max_temp, float wind_speed, float wind_direction, int air_pressure, int humidity, float visibility, int predictability, float the_temp) {
                 this.id = id;
                 this.weather_state_name = weather_state_name;
                 this.weather_state_abbr = weather_state_abbr;
@@ -30,6 +40,7 @@ public class WeatherReportModel {
                 this.humidity = humidity;
                 this.visibility = visibility;
                 this.predictability = predictability;
+                this.the_temp = the_temp;
         }
 
         public WeatherReportModel() {
@@ -38,22 +49,9 @@ public class WeatherReportModel {
 
         @Override
         public String toString() {
-                return "WeatherReportModel{" +
-                        "id=" + id +
-                        ", weather_state_name='" + weather_state_name + '\'' +
-                        ", weather_state_abbr='" + weather_state_abbr + '\'' +
-                        ", wind_direction_compass='" + wind_direction_compass + '\'' +
-                        ", created='" + created + '\'' +
-                        ", applicable_date='" + applicable_date + '\'' +
-                        ", min_temp=" + min_temp +
-                        ", max_temp=" + max_temp +
-                        ", wind_speed=" + wind_speed +
-                        ", wind_direction=" + wind_direction +
-                        ", air_pressure=" + air_pressure +
-                        ", humidity=" + humidity +
-                        ", visibility=" + visibility +
-                        ", predictability=" + predictability +
-                        '}';
+                return weather_state_name + "Date: " + applicable_date + "\n" +
+                        "Min Temp: "+ min_temp + "Max Temp: " + max_temp + "Temperature; " + the_temp;
+
         }
 
         public int getId() {
