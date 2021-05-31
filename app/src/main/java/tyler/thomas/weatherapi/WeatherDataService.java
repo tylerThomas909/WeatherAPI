@@ -8,6 +8,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -20,6 +21,7 @@ import java.util.List;
 public class WeatherDataService extends MainActivity {
 
     public static final String QUERY_FOR_CITY_ID = "https://www.metaweather.com/api/location/search/?query=";
+    public static final String QUERY_FOR_CITY_WEATHER_BY_ID = "https://www.metaweather.com/api/location/";
     Context context;
     String cityID = "";
 
@@ -54,11 +56,24 @@ public class WeatherDataService extends MainActivity {
         MySingleton.getInstance(context).addToRequestQueue(request);
 
     }
-    public getWeathertByID(String cityID) {
+    public void getWeathertByID(String cityID) {
         List<WeatherReportModel> report = new ArrayList();
+        //Get the JSON Object
+        String url = QUERY_FOR_CITY_WEATHER_BY_ID + cityID;
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, response -> {
+            Toast.makeText(context, response.toString(),Toast.LENGTH_SHORT).show();
 
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
 
+            }
+        });
+                //Get the property called "consolidated weather which is an array
 
+                //get each item
+
+        MySingleton.getInstance(context).addToRequestQueue(request);
     }
 
 }

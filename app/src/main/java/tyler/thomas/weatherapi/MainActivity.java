@@ -27,7 +27,6 @@ Button btn_getWeatherByID;
 Button btn_getWeatherByName;
 EditText et_dataInput;
 ListView lv_weatherReport;
-Button b;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,16 +58,9 @@ Button b;
         btn_getWeatherByID.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                weatherDataService.getweatherByID(et_dataInput.getText().toString(), new WeatherDataService.VolleyResponseListener(){
-                    @Override
-                    public void onError(String message) {
-                        Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
-                    }
-                    @Override
-                    public void onResponse(String cityID) {
-                        Toast.makeText(MainActivity.this,"Returned an ID of "+ cityID, Toast.LENGTH_SHORT).show();
-                    }
-                });
+                weatherDataService.getWeathertByID("44418");
+
+
             }
         });
         btn_getWeatherByName.setOnClickListener(new View.OnClickListener() {
