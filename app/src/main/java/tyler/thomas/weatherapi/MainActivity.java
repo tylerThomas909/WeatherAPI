@@ -27,7 +27,7 @@ Button btn_getWeatherByID;
 Button btn_getWeatherByName;
 EditText et_dataInput;
 ListView lv_weatherReport;
-
+Button b;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
