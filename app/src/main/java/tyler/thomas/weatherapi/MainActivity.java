@@ -58,7 +58,17 @@ ListView lv_weatherReport;
         btn_getWeatherByID.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                weatherDataService.getWeathertByID("44418");
+                weatherDataService.getWeathertByID(et_dataInput.getText().toString(), new WeatherDataService.ForecastByIDResponse() {
+                    @Override
+                    public void onError(String message) {
+                        Toast.makeText(MainActivity.this,"wrong " , Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onResponse(WeatherReportModel weatherReportModel) {
+                        Toast.makeText(MainActivity.this,weatherReportModel.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
 
 
             }
